@@ -1,0 +1,21 @@
+#!/bin/bash
+domain=$1
+ip=$2
+
+if [ -z "$1" ]; then
+    read -p "Enter a domain name: " domain
+fi
+
+if [ -z "$2" ]; then
+    read -p "Enter an ip: " ip
+fi
+
+found=$(cat /etc/hosts | grep "$domain")
+
+if [ ! -z "$found" ]; then
+    sudo sed -i "s/$found/$ip    $domain/g" /etc/hosts
+else
+    sudo sh -c 'echo '"$ip    $domain"' >> /etc/hosts'
+fi
+
+cat /etc/hosts
