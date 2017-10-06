@@ -1,0 +1,16 @@
+#!/bin/bash
+
+project=$1
+params=""
+
+for PARAM in "$@"
+do
+	dir="$HOME/docker/$PARAM"
+	if [ -d "$dir" ]; then
+		params="$params -f $dir/docker-compose.yml"
+	else
+		params="$params $PARAM"
+	fi
+done
+
+sh -c '/usr/local/bin/docker-compose'"$params"

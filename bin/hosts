@@ -13,9 +13,9 @@ fi
 found=$(cat /etc/hosts | grep "$domain")
 
 if [ ! -z "$found" ]; then
-    sudo sed -i "s/$found/$ip    $domain/g" /etc/hosts
+    sudo sed -i "s/$found/$ip $domain/g" /etc/hosts
 else
-    sudo sh -c 'echo '"$ip    $domain"' >> /etc/hosts'
+    sudo sh -c 'echo '"$ip $domain"' >> /etc/hosts'
 fi
 
 cat /etc/hosts
